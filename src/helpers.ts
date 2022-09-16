@@ -42,7 +42,8 @@ export const isElementAnSFC = (element: ReactElement<any>): boolean => {
 
   return (
     typeof element.type === 'function' &&
-    !element.type.prototype.isReactComponent
+    'type' in  element ?
+    !element.type.prototype.isReactComponent : element.$$typeof.toString() !== 'Symbol(react.element)'
   );
 };
 
